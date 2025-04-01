@@ -33,5 +33,15 @@ class SaidaMedicamento(models.Model):
 
     def __str__(self):
         return f"saída de {self.quantidade}x {self.medicamento.nome} para {self.destino}"
+
+
+    def save (self, *args, **kwargs):
+        if self.medicamento.quantidade >= self.quantidade:
+            self.medicamento.quantidade -= self.quantidade
+            self.medicamento.save()
+            super().save(*args, **kwargs)
+        
+        else:
+            raise ValueError("Quantidade insuficiente em estoque para essa saída")
     
 # Create your models here.
