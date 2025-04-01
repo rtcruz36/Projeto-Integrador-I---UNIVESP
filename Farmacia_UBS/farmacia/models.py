@@ -20,8 +20,8 @@ class Medicamento(models.Model):
         dias_restantes=(self.validade-timezone.now().date).days
         return dias_restantes <= 30
 
-    def__str__(self):
-       return f"{self.quantidade} (Lote{self.lote})"
+    def __str__(self):
+        return f"{self.quantidade} (Lote{self.lote})"
 
 
 class SaidaMedicamento(models.Model):
@@ -31,7 +31,7 @@ class SaidaMedicamento(models.Model):
     destino=models.CharField(max_length=100)
     foi_para_emergencia=models.BooleanField(default=False)
 
-    def__str__(self):
-    return f"saída de {self.quantidade}x {self.medicamento.nome} para {self.destino}"
+    def __str__(self):
+        return f"saída de {self.quantidade}x {self.medicamento.nome} para {self.destino}"
     
 # Create your models here.
