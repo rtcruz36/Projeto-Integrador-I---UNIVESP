@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmácia da UBS</title>
+</head>
+<body>
+    <a href="{% url 'cadastrar' %}">+ Cadastrar novo medicamento</a>
+    <h1>Medicamentos cadastrados</h1>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Validade</th>
+            <th>Vencido?</th>
+            <th>Controlado</th>
+            <th>Carrinho de emergência</th>
+        </tr>
+        {% for m in medicamentos %}
+        <tr>
+            <td><a href="{% url 'editar' m.id %}">Editar</a></td>
+            <td>{{ m.nome }}</td>
+            <td>{{ m.quantidade }}</td>
+            <td>{{ m.validade }}</td>
+            <td>{{ m.esta_vencido|yesno:"Sim,Não" }}</td>
+            <td>{{ m.controlado|yesno:"Sim,Não" }}</td>
+            <td>{{ m.carrinho_emergencia|yesno:"Sim,Não" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">Nenhum medicamento cadastrado.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

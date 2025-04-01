@@ -45,3 +45,14 @@ class SaidaMedicamento(models.Model):
             raise ValueError("Quantidade insuficiente em estoque para essa saída")
     
 # Create your models here.
+
+from django import forms
+from .models import Medicamento
+
+class MedicamentoForm(forms.ModelForm):
+    class Meta:
+        model = Medicamento
+        fields = '__all__'
+        widgets = {
+            'validade': forms.DateInput(attrs={'type': 'date'}),
+        }
