@@ -12,9 +12,18 @@
     {% if user.is_authenticated %}
     <p>Bem-vindo, {{ user.username }} | 
     <a href="{% url 'logout' %}">Sair</a></p>
-    <a href="{% url 'cadastrar' %}">+ Cadastrar medicamento</a> |
+    <a href="{% url 'cadastrar_medicamento' %}">+ Cadastrar medicamento</a> |
     <a href="{% url 'registrar_saida' %}">- Registrar saída</a>
-    <a href="{% url 'editar' m.id %}">Editar</a>
+    {% for m in medicamentos %}
+  <tr>
+    <td>{{ m.nome }}</td>
+    <td>{{ m.quantidade }}</td>
+    <td>{{ m.validade }}</td>
+    <td>
+      <a href="{% url 'editar' m.id %}">Editar</a>
+    </td>
+  </tr>
+{% endfor %}
     {% endif %}
     
          

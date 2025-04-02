@@ -77,6 +77,16 @@ def registrar_usuario(request):
         form = UserCreationForm()
     return render(request, 'registro.html', {'form': form})
 
+#from django.shortcuts import render
+
+#def profile(request):
+   # return render(request, 'profile.html')
+
+#from django.shortcuts import render
+
+# def profile(request):
+   # return render(request, 'farmacia/profile.html')  # ou qualquer outro template
+
 
 
 
