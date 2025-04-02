@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrar Saída</title>
+</head>
+<body>
+    <h1>Registrar Saída de Medicamento</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="medicamento">Medicamento:</label>
+        <select name="medicamento_id" id="medicamento">
+            {% for m in medicamentos %}
+            <option value="{{ m.id }}">{{ m.nome }} ({{ m.quantidade }} disponíveis)</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="quantidade">Quantidade a remover:</label>
+        <input type="number" name="quantidade" id="quantidade" min="1">
+        <br><br>
+
+        <button type="submit">Registrar Saída</button>
+    </form>
+
+    <br>
+    <a href="{% url 'home' %}">Voltar à Home</a>
+</body>
+</html>

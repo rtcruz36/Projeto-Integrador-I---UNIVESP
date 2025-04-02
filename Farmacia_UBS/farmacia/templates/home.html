@@ -4,7 +4,25 @@
     <title>Farmácia da UBS</title>
 </head>
 <body>
-    <a href="{% url 'cadastrar' %}">+ Cadastrar novo medicamento</a>
+    {% if not user.is_authenticated %}
+    <a href="{% url 'registro' %}">Criar conta</a> |
+    <a href="{% url 'login' %}">Login</a>
+    {%endif%}
+    
+    {% if user.is_authenticated %}
+    <p>Bem-vindo, {{ user.username }} | 
+    <a href="{% url 'logout' %}">Sair</a></p>
+    <a href="{% url 'cadastrar' %}">+ Cadastrar medicamento</a> |
+    <a href="{% url 'registrar_saida' %}">- Registrar saída</a>
+    <a href="{% url 'editar' m.id %}">Editar</a>
+    {% endif %}
+    
+    {% if not user.is_authenticated %}
+    <a href="{% url 'registro' %}">Criar conta</a> |
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+      
+
     <h1>Medicamentos cadastrados</h1>
     <table border="1">
         <tr>
